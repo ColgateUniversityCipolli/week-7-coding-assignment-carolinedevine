@@ -71,7 +71,7 @@ beta.prob <- function(x, alpha, beta, type){
     # P(X < x) -> uses cdf.      -> same as <=
     output = pbeta(x, alpha, beta)
   }else if (type == "<="){
-    # P(X <= x) -> cdf , same as < due to continuity
+    # P(X <= x) -> cdf , same as < due to continuous
     output = pbeta(x, alpha, beta)
   }else if (type == ">"){
     # P(X > x) -> cdf + complement rule

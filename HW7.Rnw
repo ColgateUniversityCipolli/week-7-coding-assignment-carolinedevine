@@ -75,7 +75,6 @@ beta.prob <- function(x, alpha, beta, type){
   
   
   # Use dbeta and pbeta to conditionally return the correct probability
- 
   if (type == "=="){
     # P(X = x) -> pdf
     output = dbeta(x, alpha, beta)
@@ -83,10 +82,10 @@ beta.prob <- function(x, alpha, beta, type){
     # P(X != x) -> pdf, complement rule
     output = 1 - (dbeta(x, alpha, beta))
   }else if (type == "<"){
-    # P(X < x) -> uses cdf.      -> same as <=
+    # P(X < x) -> uses cdf      -> same as <=
     output = pbeta(x, alpha, beta)
   }else if (type == "<="){
-    # P(X <= x) -> cdf , same as < due to continuity
+    # P(X <= x) -> cdf , same as < due to continuous
     output = pbeta(x, alpha, beta)
   }else if (type == ">"){
     # P(X > x) -> cdf + complement rule
