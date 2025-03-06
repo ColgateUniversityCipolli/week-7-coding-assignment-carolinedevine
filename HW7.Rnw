@@ -46,9 +46,7 @@ pois.prob <- function(x, lambda, type){
   }else if (type == ">="){
     # P(X >= x) -> cdf + complement rule
     output = 1 - (ppois((x-1), lambda))
-  } else {
-    output = "Not correct type"
-  }
+  } 
   return(output)
   
 }
@@ -93,8 +91,6 @@ beta.prob <- function(x, alpha, beta, type){
   }else if (type == ">="){
     # P(X >= x) -> cdf + complement rule, same as >
     output = 1 - (pbeta(x, alpha, beta))
-  } else {
-    output = "Not correct type"
   }
   return(output)
   
