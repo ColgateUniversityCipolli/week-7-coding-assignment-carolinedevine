@@ -57,6 +57,9 @@ pois.prob(x = 0, lambda = 2,"==")
 # Correct, outputs 0.1353 and that is e^-2 which is the answer
 #when calculated analytically
 @
+
+The poisson distribution is a discrete distribution that describes the number of events that occur in a unique time/place/space/etc. It takes one parameter as a input: lambda. I used both the PMF and CDF to calculate the operations the question asked for. I validated my answers by using calculus as shown in the comments at the end of my code. 
+
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % Question 2
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,16 +74,17 @@ beta.prob <- function(x, alpha, beta, type){
   # support = [0,1] inclusive
   # Beta Distribution is continuous, not discrete
   
-  
+  # the equals and not equals # 
   # Use dbeta and pbeta to conditionally return the correct probability
+ 
   if (type == "=="){
-    # P(X = x) -> pdf
-    output = dbeta(x, alpha, beta)
+    # P(X = x) = 0
+    output = 0 # doesn't output the probability
   }else if (type == "!="){
-    # P(X != x) -> pdf, complement rule
-    output = 1 - (dbeta(x, alpha, beta))
+    # P(X != x) = 1
+    output = 1 - 0
   }else if (type == "<"){
-    # P(X < x) -> uses cdf      -> same as <=
+    # P(X < x) -> uses cdf.      -> same as <=
     output = pbeta(x, alpha, beta)
   }else if (type == "<="){
     # P(X <= x) -> cdf , same as < due to continuous
@@ -98,8 +102,10 @@ beta.prob <- function(x, alpha, beta, type){
 
 # Example Run Through
 beta.prob(x = 0.4, alpha = 2, beta = 5, ">=")
-
 @
+
+The beta distribution is a continuous distribution. This allows for easier computation of the basic operations that we were asked to do since P(X <= x) is the same as P(X < x) and vice versa. It takes two parameters: alpha and beta which can be seen in the function as inputs. The beta distribution uses the PDF and CDF: \texttt{dbeta()} and \texttt{pbeta()}. The CDF of continuous functions calculates the cumulative probability.
+
 \end{enumerate}
 \bibliography{bibliography}
 \end{document}

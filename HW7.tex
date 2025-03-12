@@ -98,8 +98,6 @@
   \hldef{\}}\hlkwa{else if} \hldef{(type} \hlopt{==} \hlsng{">="}\hldef{)\{}
     \hlcom{# P(X >= x) -> cdf + complement rule}
     \hldef{output} \hlkwb{=} \hlnum{1} \hlopt{-} \hldef{(}\hlkwd{ppois}\hldef{((x}\hlopt{-}\hlnum{1}\hldef{), lambda))}
-  \hldef{\}} \hlkwa{else} \hldef{\{}
-    \hldef{output} \hlkwb{=} \hlsng{"Not correct type"}
   \hldef{\}}
   \hlkwd{return}\hldef{(output)}
 
@@ -118,6 +116,9 @@
 \end{alltt}
 \end{kframe}
 \end{knitrout}
+
+The poisson distribution is a discrete distribution that describes the number of events that occur in a unique time/place/space/etc. It takes one parameter as a input: lambda. I used both the PMF and CDF to calculate the operations the question asked for. I validated my answers by using calculus as shown in the comments at the end of my code. 
+
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % Question 2
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -134,20 +135,20 @@
   \hlcom{# support = [0,1] inclusive}
   \hlcom{# Beta Distribution is continuous, not discrete}
 
-
+  \hlcom{# the equals and not equals # }
   \hlcom{# Use dbeta and pbeta to conditionally return the correct probability}
 
   \hlkwa{if} \hldef{(type} \hlopt{==} \hlsng{"=="}\hldef{)\{}
-    \hlcom{# P(X = x) -> pdf}
-    \hldef{output} \hlkwb{=} \hlkwd{dbeta}\hldef{(x, alpha, beta)}
+    \hlcom{# P(X = x) = 0}
+    \hldef{output} \hlkwb{=} \hlnum{0} \hlcom{# doesn't output the probability}
   \hldef{\}}\hlkwa{else if} \hldef{(type} \hlopt{==} \hlsng{"!="}\hldef{)\{}
-    \hlcom{# P(X != x) -> pdf, complement rule}
-    \hldef{output} \hlkwb{=} \hlnum{1} \hlopt{-} \hldef{(}\hlkwd{dbeta}\hldef{(x, alpha, beta))}
+    \hlcom{# P(X != x) = 1}
+    \hldef{output} \hlkwb{=} \hlnum{1} \hlopt{-} \hlnum{0}
   \hldef{\}}\hlkwa{else if} \hldef{(type} \hlopt{==} \hlsng{"<"}\hldef{)\{}
     \hlcom{# P(X < x) -> uses cdf.      -> same as <=}
     \hldef{output} \hlkwb{=} \hlkwd{pbeta}\hldef{(x, alpha, beta)}
   \hldef{\}}\hlkwa{else if} \hldef{(type} \hlopt{==} \hlsng{"<="}\hldef{)\{}
-    \hlcom{# P(X <= x) -> cdf , same as < due to continuity}
+    \hlcom{# P(X <= x) -> cdf , same as < due to continuous}
     \hldef{output} \hlkwb{=} \hlkwd{pbeta}\hldef{(x, alpha, beta)}
   \hldef{\}}\hlkwa{else if} \hldef{(type} \hlopt{==} \hlsng{">"}\hldef{)\{}
     \hlcom{# P(X > x) -> cdf + complement rule}
@@ -155,8 +156,6 @@
   \hldef{\}}\hlkwa{else if} \hldef{(type} \hlopt{==} \hlsng{">="}\hldef{)\{}
     \hlcom{# P(X >= x) -> cdf + complement rule, same as >}
     \hldef{output} \hlkwb{=} \hlnum{1} \hlopt{-} \hldef{(}\hlkwd{pbeta}\hldef{(x, alpha, beta))}
-  \hldef{\}} \hlkwa{else} \hldef{\{}
-    \hldef{output} \hlkwb{=} \hlsng{"Not correct type"}
   \hldef{\}}
   \hlkwd{return}\hldef{(output)}
 
@@ -170,6 +169,9 @@
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
+
+The beta distribution is a continuous distribution. This allows for easier computation of the basic operations that we were asked to do since P(X <= x) is the same as P(X < x) and vice versa. It takes two parameters: alpha and beta which can be seen in the function as inputs. The beta distribution uses the PDF and CDF: \texttt{dbeta()} and \texttt{pbeta()}. The CDF of continuous functions calculates the cumulative probability.
+
 \end{enumerate}
 \bibliography{bibliography}
 \end{document}

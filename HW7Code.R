@@ -56,15 +56,15 @@ beta.prob <- function(x, alpha, beta, type){
   # support = [0,1] inclusive
   # Beta Distribution is continuous, not discrete
   
-  
+  # the equals and not equals # 
   # Use dbeta and pbeta to conditionally return the correct probability
  
   if (type == "=="){
-    # P(X = x) -> pdf
-    output = dbeta(x, alpha, beta)
+    # P(X = x) = 0
+    output = 0 # doesn't output the probability
   }else if (type == "!="){
-    # P(X != x) -> pdf, complement rule
-    output = 1 - (dbeta(x, alpha, beta))
+    # P(X != x) = 1
+    output = 1 - 0
   }else if (type == "<"){
     # P(X < x) -> uses cdf.      -> same as <=
     output = pbeta(x, alpha, beta)
